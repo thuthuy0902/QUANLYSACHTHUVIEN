@@ -1,33 +1,90 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.Year;
 
 // LOP SACH
 class Sach {
-    // Khai bao cac thuoc tinh
+    // 1. Khai bao cac thuoc tinh private
     private String maSach;
     private String tieuDe;
     private String tacGia;
     private int namXuatBan;
     private int soLuong;
 
-    // Ham khoi tao
+    // 2. Constructor co tham so day du
     public Sach(String maSach, String tieuDe, String tacGia,
                 int namXuatBan, int soLuong) {
         this.maSach = maSach;
         this.tieuDe = tieuDe;
         this.tacGia = tacGia;
-        this.namXuatBan = namXuatBan;
-        this.soLuong = soLuong;
+        setNamXuatBan(namXuatBan);
+        setSoLuong(soLuong);
     }
 
-    // Phuong thuc hien thi thong tin sach
+    // 3. GETTER - Phuong thuc lay gia tri
+
+    public String getMaSach() {
+        return maSach;
+    }
+
+    public String getTieuDe() {
+        return tieuDe;
+    }
+
+    public String getTacGia() {
+        return tacGia;
+    }
+
+    public int getNamXuatBan() {
+        return namXuatBan;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    // 4. SETTER - Phuong thuc thay doi gia tri
+
+    public void setMaSach(String maSach) {
+        this.maSach = maSach;
+    }
+
+    public void setTieuDe(String tieuDe) {
+        this.tieuDe = tieuDe;
+    }
+
+    public void setTacGia(String tacGia) {
+        this.tacGia = tacGia;
+    }
+
+    // Kiem tra nam xuat ban
+    public void setNamXuatBan(int namXuatBan) {
+        int currentYear = Year.now().getValue();
+
+        if (namXuatBan > 0 && namXuatBan <= currentYear) {
+            this.namXuatBan = namXuatBan;
+        } else {
+            System.out.println("Nam xuat ban khong hop le!");
+        }
+    }
+
+    // Kiem tra so luong
+    public void setSoLuong(int soLuong) {
+        if (soLuong >= 0) {
+            this.soLuong = soLuong;
+        } else {
+            System.out.println("So luong khong duoc am!");
+        }
+    }
+
+    // 5. Phuong thuc hien thi thong tin sach
     public void hienThiThongTin() {
-        System.out.println("Ma sach: " + maSach);
-        System.out.println("Tieu de: " + tieuDe);
-        System.out.println("Tac gia: " + tacGia);
-        System.out.println("Nam xuat ban: " + namXuatBan);
-        System.out.println("So luong: " + soLuong);
+        System.out.println("Ma sach: " + getMaSach());
+        System.out.println("Tieu de: " + getTieuDe());
+        System.out.println("Tac gia: " + getTacGia());
+        System.out.println("Nam xuat ban: " + getNamXuatBan());
+        System.out.println("So luong: " + getSoLuong());
         System.out.println("---------------------------");
     }
 }
@@ -81,7 +138,6 @@ public class Test {
             System.out.println("Thong tin sach thu " + (i + 1));
             danhSach.get(i).hienThiThongTin();
         }
-
         sc.close();
     }
 }
